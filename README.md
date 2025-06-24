@@ -27,6 +27,6 @@ It provides an interactive and user-friendly interface to explore space-related 
 1. Clone the repo:
 
    ```bash
-   git clone https://github.com/YOUR_USERNAME/nasa-visualizer.git
+   git clone https://github.com/YOUR_USERNAME/NASA-Visualizer.git
    cd nasa-visualizer
 
