@@ -1,13 +1,157 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* index.css */
+
+.box {
+    border-radius: 0px !important;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.center {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh;
+}
+
+.align-item {
+    text-align: center;
+}
+
+.set-error {
+    color: red;
+}
+
+.img-layout {
+    width: 100%;
+}
+
+.form-width {
+    width: 24% !important;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.fact-btn {
+    border-radius : 5px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.custom-size {
+    width: 200px;
+    height: 200px;
+}
+
+.photo {
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+  
+
+.set-container {
+    background: rgba(30, 50, 80, 0.6); /* dark navy-blue translucent */
+    padding: 1.5rem;
+    min-width: 1200px;
+    color: white;
+    min-height: 80vh;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+
+  .horizontal-facts-bar {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 0.5rem;
+    text-align: center;
+    font-style: italic;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    animation: slideDown 0.5s ease;
+    border-radius: 6px;
+  }
+  
+  @keyframes slideDown {
+    from {
+      transform: translateY(-20%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  
+
+
+
+.epic-img {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.epic-img-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+}
+
+.nav-link.active {
+    font-weight: bold;
+    color: #ffc107 !important; /* optional highlight */
+}
+
+/* Floating facts toggle button */
+.facts-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1100;
+    background-color: #343a40;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.facts-toggle-btn:hover {
+    background-color: #495057;
+}
+
+/* Background gradient animation */
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.background-gradient {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(-45deg, #1e3c72, #ad969e,  #1e3c72, #6dd5fa);
+  background-size: 400% 400%;
+  animation: gradientBackground 15s ease infinite;
+  transition: background 0.5s ease;
+  overflow-x: hidden;
 }

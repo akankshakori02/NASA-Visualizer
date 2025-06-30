@@ -1,27 +1,52 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState, Suspense, lazy } from "react";
+import { Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import APOD from "./components/APOD";
+import Facts from "./components/Facts";
+import Footer from "./components/Footer";
+import LoadSpinner from "./components/LoadSpinner";
 
-function App() {
-  const [apod, setApod] = useState(null);
+// Lazy Load Mars & EPIC
+const MarsRover = lazy(() => import("./components/MarsRover"));
+const EPIC = lazy(() => import("./components/EPIC"));
 
-  useEffect(() => {
-    axios.get('http://localhost:5000/api/apod')
-      .then(res => setApod(res.data))
-      .catch(err => console.error(err));
-  }, []);
+const App = () => {
+  const [showFacts, setShowFacts] = useState(true); // Control facts visibility
+
+  // Toggle facts panel visibility
+  const toggleFacts = () => {
+    setShowFacts((prev) => !prev);
+  };
 
   return (
-    <div className="App">
-      <h1>NASA Explorer</h1>
-      {apod ? (
-        <div>
-          <h2>{apod.title}</h2>
-          <img src={apod.url} alt={apod.title} width="500" />
-          <p>{apod.explanation}</p>
+    <>
+      <Header toggleFacts={toggleFacts} showFacts={showFacts} />
+      <div className="set-container background-gradient">
+      {showFacts && (
+        <div className="horizontal-facts-bar">
+          <Facts onClose={() => setShowFacts(false)} />
         </div>
-      ) : <p>Loading...</p>}
-    </div>
+      )}
+        <Suspense fallback={<LoadSpinner />}>
+          <Routes>
+            <Route exact path="/" element={<APOD />} />
+            <Route exact path="/apod" element={<APOD />} />
+            <Route exact path="/mars-rover" element={<MarsRover />} />
+            <Route exact path="/epic" element={<EPIC />} />
+          </Routes>
+        </Suspense>
+      </div>
+
+      <button
+        className="facts-toggle-btn"
+        onClick={toggleFacts}
+        title={showFacts ? "Hide space facts" : "Show a space fact!"}
+      >
+        🧠
+      </button>
+      <Footer />
+    </>
   );
-}
+};
 
 export default App;
