@@ -93,7 +93,7 @@ Sets up Express server routes to handle requests for NASA data.
 Uses axios to fetch data from NASA's APIs and serves it to the frontend, abstracting API logic from the client side.
 
 # Deployment
-Live: 
-Server Deployed:   (If required)
+Live: https://nasa-visualizer-rust.vercel.app
+Server Deployed: https://nasa-visualizer.onrender.com  (If required)
 GitHub: https://github.com/akankshakori02/NASA-Visualizer
 
