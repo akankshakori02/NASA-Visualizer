@@ -6,7 +6,12 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { Tooltip, OverlayTrigger, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
-const Header = ({ toggleFacts, showFacts }) => {
+const Header = ({ toggleFacts,
+  showFacts,
+  toggleMarsChart,
+  toggleEpicChart,
+  showMarsChart,
+  showEpicChart, }) => {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -16,7 +21,7 @@ const Header = ({ toggleFacts, showFacts }) => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
-    }, 1000); 
+    }, 1000);
 
     return () => clearInterval(timer);
   }, []);
@@ -60,7 +65,7 @@ const Header = ({ toggleFacts, showFacts }) => {
           >
             NASA Visualizer
           </Navbar.Brand>
-          
+
           <Navbar.Text className="text-light fst-italic fw-light">
             Current Time:{" "}
             <span className="text-info">
@@ -145,6 +150,18 @@ const Header = ({ toggleFacts, showFacts }) => {
                 Mars Rover Photos
               </Nav.Link>
             </OverlayTrigger>
+            <Button
+              variant={showMarsChart ? "secondary" : "outline-secondary"}
+              size="sm"
+              className="mb-3 ms-4"
+              onClick={(e) => {
+                e.stopPropagation(); // prevent Nav.Link click
+                toggleMarsChart();
+              }}
+            >
+              {showMarsChart ? "Hide Chart" : "Show Chart"}
+            </Button>
+
 
             <OverlayTrigger
               placement="right"
@@ -172,6 +189,18 @@ const Header = ({ toggleFacts, showFacts }) => {
                 EPIC
               </Nav.Link>
             </OverlayTrigger>
+            <Button
+              variant={showEpicChart ? "secondary" : "outline-secondary"}
+              size="sm"
+              className="mb-3 ms-4"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleEpicChart();
+              }}
+            >
+              {showEpicChart ? "Hide Chart" : "Show Chart"}
+            </Button>
+
             <Nav.Link
               onClick={() => {
                 toggleFacts();

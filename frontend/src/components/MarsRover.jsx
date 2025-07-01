@@ -5,9 +5,10 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import "../index.css";
 import { CAMERA_NAMES } from "../data/camera.types";
+import MarsCameraChart from './charts/MarsCameraChart';
 import LoadSpinner from "./LoadSpinner";
 
-const MarsRover = () => {
+const MarsRover = ({ showChart }) => {
   const [photos, setPhotos] = useState(null); // State to hold all photos
   const [filteredPhotos, setFilteredPhotos] = useState([]); // State to hold filtered photos based on selected camera
   const [camera, setCamera] = useState("all"); // State to control selected camera
@@ -51,6 +52,7 @@ const MarsRover = () => {
   ) : filteredPhotos ? (
     <Container>
       <h2>Mars Rover Photos</h2>
+      {showChart && (<MarsCameraChart photos={photos} />)}
       <ToggleButtonGroup
         variant="secondary"
         className="m-2"

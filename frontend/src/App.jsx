@@ -11,8 +11,12 @@ const MarsRover = lazy(() => import("./components/MarsRover"));
 const EPIC = lazy(() => import("./components/EPIC"));
 
 const App = () => {
-  const [showFacts, setShowFacts] = useState(true); // Control facts visibility
+  const [showFacts, setShowFacts] = useState(false); // Control facts visibility
+  const [showMarsChart, setShowMarsChart] = useState(false);
+  const [showEpicChart, setShowEpicChart] = useState(false);
 
+  const toggleMarsChart = () => setShowMarsChart((prev) => !prev);
+  const toggleEpicChart = () => setShowEpicChart((prev) => !prev);
   // Toggle facts panel visibility
   const toggleFacts = () => {
     setShowFacts((prev) => !prev);
@@ -20,19 +24,24 @@ const App = () => {
 
   return (
     <>
-      <Header toggleFacts={toggleFacts} showFacts={showFacts} />
+      <Header toggleFacts={toggleFacts}
+        showFacts={showFacts}
+        toggleMarsChart={toggleMarsChart}
+        toggleEpicChart={toggleEpicChart}
+        showMarsChart={showMarsChart}
+        showEpicChart={showEpicChart} />
       <div className="set-container background-gradient">
-      {showFacts && (
-        <div className="horizontal-facts-bar">
-          <Facts onClose={() => setShowFacts(false)} />
-        </div>
-      )}
+        {showFacts && (
+          <div className="horizontal-facts-bar">
+            <Facts onClose={() => setShowFacts(false)} />
+          </div>
+        )}
         <Suspense fallback={<LoadSpinner />}>
           <Routes>
             <Route exact path="/" element={<APOD />} />
             <Route exact path="/apod" element={<APOD />} />
-            <Route exact path="/mars-rover" element={<MarsRover />} />
-            <Route exact path="/epic" element={<EPIC />} />
+            <Route exact path="/mars-rover" element={<MarsRover showChart={showMarsChart} />} />
+            <Route exact path="/epic" element={<EPIC showChart={showEpicChart} />} />
           </Routes>
         </Suspense>
       </div>

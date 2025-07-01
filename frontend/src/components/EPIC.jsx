@@ -3,12 +3,13 @@ import { DropdownButton, Dropdown, Container, Row, Col } from "react-bootstrap";
 import "../index.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import LoadSpinner from "./LoadSpinner";
+import EpicLongitudeHistogram from "./charts/EpicLongitudeHistogram";
 
-const EPIC = () => {
+const EPIC = ({ showChart }) => {
   // State to hold EPIC data & control the type of images displayed
   const [epicData, setImages] = useState(null);
   const [type, setType] = useState("natural");
-  const [error, setError] = useState(null); //State to handle error
+  const [error, setError] = useState(null);
 
   // Fetch images on type change
   useEffect(() => {
@@ -48,6 +49,14 @@ const EPIC = () => {
           </DropdownButton>
         </Col>
       </Row>
+
+
+      {showChart && (<Row className="my-4">
+        <Col>
+          <h4>Distribution of Images by Longitude</h4>
+          <EpicLongitudeHistogram data={epicData} />
+        </Col>
+      </Row>)}
 
       <div className="epic-img-layout">
         {epicData.map((image) => (
